@@ -8,12 +8,12 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <main class="remote">
+  <section class="login" id="loginScreen"><div class="login-card"><div class="login-logo">◉</div><h1>Crystal Remote</h1><p id="loginText">Personal device access</p><input id="loginPin" type="password" inputmode="numeric" maxlength="8" placeholder="Create PIN"><button id="loginBtn">Continue</button><button id="manualLock" class="link-btn hidden">Lock device</button><small>No cloud login. Stays unlocked until you manually lock it.</small></div></section><main class="remote hidden" id="remoteApp">
     <header class="top">
       <button class="power" data-key="KEY_POWER" aria-label="Power">⏻</button>
       <div class="drag"></div>
       <button class="icon" id="search">⌕</button>
-      <button class="icon" id="more">⋮</button>
+      <button class="icon" id="more">⋮</button><button class="lock-mini" id="lockNow">🔒</button>
     </header>
 
     <section class="apps">

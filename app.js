@@ -1,3 +1,10 @@
+const loginScreen=document.querySelector("#loginScreen"),remoteApp=document.querySelector("#remoteApp"),loginPin=document.querySelector("#loginPin"),loginBtn=document.querySelector("#loginBtn"),loginText=document.querySelector("#loginText"),manualLock=document.querySelector("#manualLock"),lockNow=document.querySelector("#lockNow");
+function unlockLocal(){remoteApp.classList.remove("hidden");loginScreen.classList.add("hidden")}
+function lockLocal(){localStorage.removeItem("crystalUnlocked");loginScreen.classList.remove("hidden");remoteApp.classList.add("hidden");loginPin.value="";loginText.textContent="Enter your PIN"}
+function setupAuth(){const p=localStorage.getItem("crystalPin");if(localStorage.getItem("crystalUnlocked")==="1"&&p){unlockLocal();return}loginText.textContent=p?"Enter your PIN":"Create a PIN once. No automatic lockout.";if(p)manualLock.classList.remove("hidden")}
+loginBtn.addEventListener("click",()=>{const e=loginPin.value.trim(),p=localStorage.getItem("crystalPin");if(e.length<4)return toast("Use at least 4 digits");if(!p){localStorage.setItem("crystalPin",e);localStorage.setItem("crystalUnlocked","1");unlockLocal()}else if(e===p){localStorage.setItem("crystalUnlocked","1");unlockLocal()}else toast("Wrong PIN. Try again. No lockout.")});
+manualLock.addEventListener("click",lockLocal);lockNow.addEventListener("click",lockLocal);loginPin.addEventListener("keydown",e=>{if(e.key==="Enter")loginBtn.click()});setupAuth();
+
 const $ = s => document.querySelector(s);
 const $$ = s => [...document.querySelectorAll(s)];
 let socket = null;
