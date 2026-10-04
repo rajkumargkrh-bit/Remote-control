@@ -1,22 +1,30 @@
-# Samsung 43 Crystal UHD Remote
+# Samsung 43 Crystal UHD Remote — Personal / Local Only
 
-Responsive Samsung Tizen TV remote UI inspired by the supplied screenshot.
+A personal-use Samsung TV remote UI based on the supplied reference screenshot.
 
-## Run
+## Privacy / storage
+- No cloud database.
+- No login/account.
+- No analytics.
+- No external API is required for the remote itself.
+- TV IP, device name and Samsung pairing token are stored only in this browser's localStorage.
+- The Node.js process runs locally on your own device/computer.
+
+## Run locally
 1. Install Node.js 18+.
-2. Run `npm install`
-3. Run `npm start`
-4. Open `http://localhost:3000`
-5. Put phone and TV on the same Wi-Fi.
-6. Enter the TV IP address.
-7. On first pairing, press **Allow** on the TV.
+2. Open this folder in a terminal.
+3. Run `npm install`
+4. Run `npm start`
+5. Open `http://localhost:3000` on the same device.
+6. Keep the phone/device and Samsung TV on the same Wi-Fi.
+7. Enter the TV's local IP address.
+8. On first connection, approve the remote on the TV.
 
-## Architecture
-Browser UI -> local WebSocket proxy -> Samsung TV WSS port 8002.
+## How it works
+Phone/browser -> local Node.js WebSocket proxy -> Samsung TV on your LAN.
 
-Samsung Tizen remote implementations commonly use the secure WebSocket endpoint on port 8002 and send `ms.remote.control` key commands. The TV may ask for one-time pairing approval and returns a token for later connections.
+The proxy is local only. It is not a hosted backend and does not upload your TV information.
 
-## Notes
-- This project is a responsive web remote, not an official Samsung app.
-- App-launch IDs vary by TV/region/model, so the four top app buttons are currently UI placeholders.
-- Power-on from a fully-off TV can require Wake-on-LAN and a model/network-specific implementation.
+## Important
+This is an unofficial personal remote and not a Samsung app.
+Netflix / Prime Video / YouTube buttons are currently UI buttons; exact app-launch commands can vary by Samsung model/region.
